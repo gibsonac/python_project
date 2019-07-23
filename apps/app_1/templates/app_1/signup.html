@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/app_1/css/style.css' %}">
+
+    <style>
+        h1#logo{
+        text-align: center;
+        background: url('/Users/tony/Documents/CodingDojo/python_stack/django/django_full_stack/python_project/apps/app_1/static/app_1/images/santa_monica.jpg') no-repeat;
+        background-size: 100%;
+        padding-top: 90px;
+        color:red;
+        font-size: 9vw;
+        font-family: 'Fredoka One',
+        cursive;
+        font-weight: bolder;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        display: inline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <form class="form-inline ">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto"></ul>
+            <span class="navbar-text">
+                <h6><a href="/login">Log In </a> | <a href="/signup">Signup </a></h6>
+            </span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1 class="display-4">Sign Up</h1>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    <div class="form-group mb-2">
+                        <input name="first_name" type="text" class="form-control-sm" placeholder="First Name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input name="last_name" type="text" class="form-control-sm" placeholder="Last Name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input name="email" type="text" class="form-control-sm" aria-describedby="emailHelp" placeholder="Enter E-mail">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input name="password" type="text" class="form-control-sm" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input name="confirm_password" type="text" class="form-control-sm" placeholder="Confirm Password">
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-success">Register</button>
+                    <br>
+                    <p>already signed up? <a href="/login">Login.</a></p>
+                </form>
+            </div>
+        <div class="col-6">
+            <div class="display-4">
+                <h1 id="logo">California</h1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
