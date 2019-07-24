@@ -13,13 +13,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     {% load static %}
-    <link rel="stylesheet" href="{% static '/app_1/css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/app_1/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app_1/css/style.css' %}">
     <style>
-    
+    /* top carousel section */
         .carousel-inner {
-            max-height: 600px !important;
+            max-height: 1500px !important;
         }
+
         .carousel-content {
             position: absolute;
             top: 10%;
@@ -28,21 +28,19 @@
             color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,.6);
         }
-        .container .row .col {
-            text-align: center;
-        }
         .carousel-caption {
             bottom: 50%;
             background-color: rgba(245,245,245, .4);
-            /* opacity: .3; */
         }
         .carousel-caption h2 {
-            font-size: 6vw;
+            font-size: 4vw;
             color: black;
-            /* opacity: 1; */
-            /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-            
         }
+        /* middle card deck's section */
+        .card-deck .card .card-body {
+            text-align: center;
+        }
+        /* Style section for the footer */
         .col ul {
             list-style: none; 
             text-align: left;
@@ -58,13 +56,12 @@
         }
         ul li a {
             color: black;
-            
         }
 
     </style>
 </head>
 <body>
-    
+    <!---------------------- TOP CAROUSEL OF IMAGES + TEXT OVERLAY -------------------------->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -73,13 +70,13 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-            <img src="courtney-corlew-O72kBjakcgA-unsplash.jpg" class="d-block w-100" alt="desert photo">
+            <img src="{% static 'app_1/images/joshua_tree.jpg' %}" class="d-block w-100" alt="desert photo">
         </div>
             <div class="carousel-item">
-            <img src="viviana-rishe-UC8fvOyG5pU-unsplash.jpg" class="d-block w-100" alt="beach photo">
+            <img src="{% static 'app_1/images/sunset.jpg' %}" class="d-block w-100" alt="beach photo">
             </div>
             <div class="carousel-item">
-            <img src="marco-bicca-b0Rt80_kXWA-unsplash.jpg" class="d-block w-100" alt="mountain photo">
+            <img src="{% static 'app_1/images/mountains_home.jpg' %}" class="d-block w-100" alt="mountain photo">
             </div>
         </div>
         <div class="carousel-caption">
@@ -94,6 +91,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+<!---------------------- NAVIGATION BAR -------------------------->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
             <form class="form-inline ">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -102,73 +100,50 @@
         <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto"></ul>
         <span class="navbar-text">
-            <h6><a href="/logout">Log In  </a> | <a href="/logout">Signup  </a></h6>
+            <h6><a href="/login">Log In  </a> | <a href="/signup">Signup  </a></h6>
         </span>
         </div>
     </nav>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col">
-            <h3>Ocean</h3>
-            <p>Learn all there is to do around the ocean in California. From swimming and surfing, to sailing or scuba diving. Find the adventures that have turned California into the famous state it is today.</p>
-            <button type="button" class="btn btn-outline-info btn-sm">See All</button>
-        </div>
-            <div class="col">
-            <h3>Mountains</h3>
-            <p>While traditionally known for their beaches to many, Cali boasts some exceptional mountain ranges, to include Mount Whitney, the highest peak in the Sierra Nevada mountain range, the state of California, and the contiguous United States. Learn all there is to do around these scenic mountain ranges.</p>
-            <button type="button" class="btn btn-outline-info btn-sm">See All</button>
+<!---------------------- 3 CARD BLOCKS, SHOWING OCEANS, MOUNTAINS, & DESERT -------------------------->
+<div class="col">
+
+    <div class="card-deck">
+        <div class="card">
+            <img src="{% static 'app_1/images/oceans.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title">Oceans</h4>
+                <p class="card-text">Learn all there is to do around the ocean in California. From swimming and surfing, to sailing or scuba diving. Find the adventures that have turned California into the famous state it is today.</p>
+                <a href="/ocean_adventures" class="btn btn-outline-info btn-sm">See ocean adventures</a>
             </div>
-            <div class="col">
-            <h3>Desert</h3>
-            <p>While water and elevation may get more of the publicity, don't let that fool you! California deserts boast a number of adventures! Checkout unique wildlife, escape the "beaten path" and strike out on your own exploration, rock climb massive boulders and walls, camp under the stars, and more.</p>
-            <button type="button" class="btn btn-outline-info btn-sm">See All</button>
+        </div>
+        <div class="card">
+            <img src="{% static 'app_1/images/mountain_hike.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title">Mountains</h4>
+                <p class="card-text">While traditionally known for their beaches to many, Cali boasts some exceptional mountain ranges, to include Mount Whitney, the highest peak in the Sierra Nevada mountain range, the state of California, and the contiguous United States. Learn all there is to do around these scenic mountain ranges.</p>
+                <a href="/mountain_adventures" class="btn btn-outline-info btn-sm">See mountain adventures</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'app_1/images/rockclimbing.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title">Desert</h4>
+                <p class="card-text">While water and elevation may get more of the publicity, don't let that fool you! California deserts boast a number of adventures! Checkout unique wildlife, escape the "beaten path" and strike out on your own exploration, rock climb massive boulders and walls, camp under the stars, and more.</p>
+                <a href="/desert_adventures" class="btn btn-outline-info btn-sm">See desert adventures</a>
             </div>
         </div>
     </div>
-        <hr> -->
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card" style="width: 21rem; min-height: 550px;" >
-                        <img src="andrew-stickelman-I0mffRPvZvs-unsplash.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="card-title">Oceans</h4>
-                            <p class="card-text">Learn all there is to do around the ocean in California. From swimming and surfing, to sailing or scuba diving. Find the adventures that have turned California into the famous state it is today.</p>
-                            <a href="#" class="btn btn-outline-info btn-sm">See ocean adventures</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="width: 21rem; min-height: 550px;">
-                        <img src="cam-adams-7TmqwexUtWQ-unsplash.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="card-title">Mountains</h4>
-                            <p class="card-text">While traditionally known for their beaches to many, Cali boasts some exceptional mountain ranges, to include Mount Whitney, the highest peak in the Sierra Nevada mountain range, the state of California, and the contiguous United States. Learn all there is to do around these scenic mountain ranges.</p>
-                            <a href="#" class="btn btn-outline-info btn-sm">See mountain adventures</a>
-                        </div>
-                    </div>
-                </div>
-                    <div class="col">
-                        <div class="card" style="width: 21rem; min-height: 550px;">
-                            <img src="samantha-sophia-l4RL-cUDrdI-unsplash.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h4 class="card-title">Desert</h4>
-                                <p class="card-text">While water and elevation may get more of the publicity, don't let that fool you! California deserts boast a number of adventures! Checkout unique wildlife, escape the "beaten path" and strike out on your own exploration, rock climb massive boulders and walls, camp under the stars, and more.</p>
-                                <a href="#" class="btn btn-outline-info btn-sm">See desert adventures</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
+    <hr>
+</div>
+    <!---------------------- BUS IMAGE -------------------------->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="adventure-beach-blue-386025.jpg" class="d-block w-100" alt="...">
+                        <img src="{% static 'app_1/images/adventure_bus2.jpg' %}" class="d-block w-100" alt="...">
                     </div>
                 </div>
             </div>
-            <!-- <img style ="opacity: .75; max-height: auto; width: auto;" src="adventure-beach-blue-386025.jpg" class="img-fluid" alt="Responsive image"> -->
+<!---------------------- FOOTER SECTION  -------------------------->
             <div class="container-fluid footer-details">
                     <div class="container">
                             <div class="row">
@@ -182,10 +157,10 @@
                                   <br>
                                   <h6><strong>Follow Us</strong></h6>
                                   <ul>
-                                      <li><a href=""><img src="facebook_20x20.png"> Facebook</a></li>
-                                      <li><a href=""><img src="twitter_20x20.png"> Twitter</a></li>
-                                      <li><a href=""><img src="pinterest_20x20.png"> Pinterest</a></li>
-                                      <li><a href=""><img src="instagram_20x20.png"> Instagram</a></li>
+                                      <li><a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"> Facebook</a></li>
+                                      <li><a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"> Twitter</a></li>
+                                      <li><a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"> Pinterest</a></li>
+                                      <li><a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"> Instagram</a></li>
                                   </ul>
                               </div>
                               <div class="col">
@@ -199,12 +174,12 @@
                               <div class="col">
                                     <h6><strong>Contact Us</strong></h6>
                                     <ul>
-                                        <li>California Adventures</li>
+                                        <li>Adventures of California</li>
                                         <li>3335 Susan St #200</li>
                                         <li>Costa Mesa, CA 92626</li>
                                         <br>
-                                        <li><a href="mailto:adventures@gmail.com"><img src="Human-emblem-mail-black-128.png"> Email</a></li>
-                                        <li><a href=""><img src="256px-Pictograms-nps-accessibility-volume_control_telephone-2.svg.png"> 999-999-9999</a></li>
+                                        <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
+                                        <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
                                         
                                         
                                     </ul>

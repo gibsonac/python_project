@@ -36,12 +36,41 @@ class UserManager(models.Manager):
             errors['password'] = "Password should be at least 8 characters"
         return errors
 
+#OCEAN ADVENTURES LIST PAGE
+    def ocean_adventures (request)
+
 #USER DATABASE
 class User(models.Model):
 	first_name = models.CharField(max_length=255)
 	last_name = models.CharField(max_length=255)
-	email = models.CharField(max_length=255, unique=True)
+	email = models.CharField(max_length=255)
 	password = models.CharField(max_length=255)
+	user_level = models.PositiveIntegerField(default=1)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	objects = UserManager()
+
+class Location(models.Model):
+	city = models.CharField(max_length=255)
+	district = models.CharField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+
+class Adventure(models.Model):
+	title = models.CharField(max_length=255)
+	description = models.TextField()
+	rating = models.PositiveIntegerField()
+	likes = models.PositiveIntegerField()
+	photos = models.ImageField()
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+	creator = models.ForeignKey(User, related_name="adventure_created")
+	located = models.ForeignKey(Location, related_name="adventure_located")
+
+class Message(models.Model):
+	message = models.TextField()
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+	creator = models.ForeignKey(User, related_name="message_created")
+	adventure_posted = models.ForeignKey(Adventure, related_name="adventure_messages")
