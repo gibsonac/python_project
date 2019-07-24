@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
-from .models import User
+from django.db import models
 import bcrypt
 import re
 
@@ -39,20 +39,6 @@ class UserManager(models.Manager):
             errors['password'] = "Password should be at least 8 characters"
         return errors
 
-#OCEAN ADVENTURES LIST PAGE
-    def ocean_adventures (request):
-        pass
-        return render (request, 'app_1/view_ocean.html')
-    
-#MOUNTAIN ADVENTURES LIST PAGE
-    def mountain_adventures (request):
-        pass
-        return render (request, 'app_1/view_mountain.html')
-
-#DESERT ADVENTURES LIST PAGE
-    def desert_adventures (request):
-        pass
-        return render (request, 'app_1/view_mountain.html')
 
 #USER DATABASE
 class User(models.Model):

@@ -57,9 +57,9 @@
         .mb-3 {
             margin-left: 30px;
         }
-        h1#logo{
+        /* h1#logo{
             text-align: center;
-            background: url('/Users/tony/Documents/CodingDojo/python_stack/django/django_full_stack/python_project/apps/app_1/static/app_1/images/santa_monica.jpg') no-repeat;
+            background: url("/santa-monica.jpg") no-repeat;
             background-size: 100%;
             padding-top: 75px;
             color:red;
@@ -70,7 +70,7 @@
             -webkit-text-fill-color: transparent;
             -webkit-background-clip: text;
             display: inline;
-        }
+        } */
         </style>
 </head>
 <body>
@@ -83,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto"></ul>
         <span class="navbar-text">
-            <h6><a href="/logout">Log In  </a> | <a href="/logout">Signup  </a></h6>
+            <h6><a href="/login">Log In  </a> | <a href="/signup">Signup  </a></h6>
         </span>
         </div>
     </nav>
@@ -93,7 +93,7 @@
     </div>
 
 <!------------------------- LIST OF ADVENTURES ----------------------------->
-    {%for adventure in adventures%}
+    %for adventure in adventures%}
     <div class="card mb-3" style="max-width: 850px;">
         <div class="row no-gutters">
           <div class="col-md-5">
@@ -110,7 +110,7 @@
           </div>
         </div>
       </div>
-      {%endfor%}
+      %endfor%}
 <!---------------------- FOOTER SECTION  -------------------------->
 <div class="container-fluid footer-details">
     <div class="container">
@@ -125,10 +125,10 @@
                   <br>
                   <h6><strong>Follow Us</strong></h6>
                   <ul>
-                      <li><a href=""><img src="{% static 'app_1/images/facebook_20x20.png' %}"> Facebook</a></li>
-                      <li><a href=""><img src="{% static 'app_1/images/twitter_20x20.png' %}"> Twitter</a></li>
-                      <li><a href=""><img src="{% static 'app_1/images/pinterest_20x20.png' %}"> Pinterest</a></li>
-                      <li><a href=""><img src="{% static 'app_1/images/instagram_20x20.png' %}"> Instagram</a></li>
+                      <li><a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"> Facebook</a></li>
+                      <li><a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"> Twitter</a></li>
+                      <li><a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"> Pinterest</a></li>
+                      <li><a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"> Instagram</a></li>
                   </ul>
               </div>
               <div class="col">

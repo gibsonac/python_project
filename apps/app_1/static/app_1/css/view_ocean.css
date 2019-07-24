@@ -44,7 +44,7 @@ ul li a {
 }
 h1#logo{
     text-align: center;
-    background: url('/Users/tony/Documents/CodingDojo/python_stack/django/django_full_stack/python_project/apps/app_1/static/app_1/images/santa_monica.jpg') no-repeat;
+    background: url("/python_project/apps/app_1/static/app_1/images/santa_monica.jpg") no-repeat;
     background-size: 100%;
     padding-top: 75px;
     color:red;
