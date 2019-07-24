@@ -11,78 +11,38 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'app_1/css/style.css' %}">
-    <style>
-    
-            .carousel-inner {
-                max-height: 600px !important;
-            }
-            .carousel-content {
-                position: absolute;
-                top: 10%;
-                left: 5%;
-                z-index: 20;
-                color: white;
-                text-shadow: 0 1px 2px rgba(0,0,0,.6);
-            }
-            .container .row .col {
-                text-align: center;
-            }
-            .carousel-caption {
-                bottom: 50%;
-                background-color: rgba(245,245,245, .4);
-            }
-            .carousel-caption h2 {
-                font-size: 6vw;
-                color: black;
-            }
-            .col ul {
-                list-style: none; 
-                text-align: left;
-                padding-inline-start: 0px;
-            }
-            .col h6 {
-                text-align: left;
-            }
-            .footer-details {
-                padding: 30px;
-                background-color: #f5f5f5;
-                min-height: 200px;
-            }
-            ul li a {
-                color: black;
-            }
-            h1#logo{
-                text-align: center;
-                background: url('/Users/tony/Documents/CodingDojo/python_stack/django/django_full_stack/python_project/apps/app_1/static/app_1/images/cal-mountain.jpeg') no-repeat;
-                background-size: 100%;
-                padding-top: 110px;
-                color:red;
-                font-size: 12vw;
-                letter-spacing: .1em;
-                font-family: 'Anton', sans-serif;
-                font-weight: bolder;
-                -webkit-text-fill-color: transparent;
-                -webkit-background-clip: text;
-                display: inline;
-            }
-        </style>
+    <link rel="stylesheet" href="{% static 'app_1/css/view_mountain.css' %}">
 </head>
 <body>
    
-<!------------------------- NAVIGATION BAR --------------------------------------->
+<!---------------------- NAVIGATION BAR -------------------------->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <form class="form-inline ">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto"></ul>
-    <span class="navbar-text">
-        <h6><a href="/login">Log In  </a> | <a href="/signup">Signup  </a></h6>
-    </span>
-    </div>
-</nav>
+        <a class="navbar-brand" href="/home">
+            <img src="{% static 'app_1/images/logo1.png' %}" width="40" height="40" alt="logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto"></ul>
+                <form class="form-inline ">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            <span class="navbar-text">
+                <ul class="nav nav-pills">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="/add_adventure">Add An Adventure </a>
+                            <a class="dropdown-item" href="#">View Past Posts </a> 
+                            <a class="dropdown-item" href="#">View Profile </a> 
+                            <a class="dropdown-item" href="#">Edit Profile </a>  
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout </a> 
+                        </div>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </nav>
 <!------------------------- TOP BANNER IMAGE ------------------------------->
 <div class="display-8">
     <h1 id="logo">California</h1>
@@ -97,60 +57,56 @@
       </div>
       <div class="col-md-7">
         <div class="card-body">
-          <h5 class="card-title">{{adventure.title}}</h5>
-          <p class="card-text">Rating: {{adventure.rating}}</p>
-          <p class="card-text">Description: {{adventure.description}}</p>
-          <p class="card-text">Posted On:   {{adventure.created_at}}</p>
-          <p class="card-text"><small class="text-muted">Total Likes: {{adventure.likes}}</small></p>
+            <a href="/adventure/details/{{adventure.id}}"><h5 class="card-title">{{adventure.title}}</h5></a>
+            <p class="card-text">Description: {{adventure.description}}</p>
+            <p class="card-text">Posted On:   {{adventure.created_at}}</p>
+            <p class="card-text"><small class="text-muted">Average Rating: {{adventure.rating}}</small></p>
         </div>
       </div>
     </div>
   </div>
   {%endfor%}
-<!---------------------- FOOTER SECTION  -------------------------->
-<div class="container-fluid footer-details">
-    <div class="container">
-            <div class="row">
-              <div class="col">
-                  <h6><strong>About California Adventures</strong></h6>
-                  <ul>
-                      <li><a href="">About Us</a></li>
-                      <li><a href="">Careers</a></li>
-                      <li><a href="">Press</a></li>
-                  </ul>
-                  <br>
-                  <h6><strong>Follow Us</strong></h6>
-                  <ul>
-                      <li><a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"> Facebook</a></li>
-                      <li><a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"> Twitter</a></li>
-                      <li><a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"> Pinterest</a></li>
-                      <li><a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"> Instagram</a></li>
-                  </ul>
-              </div>
-              <div class="col">
-                    <h6><strong>Explore</strong></h6>
-                    <ul>
-                        <li><a href="">Write a adventure</a></li>
-                        <li><a href="">Sign Up</a></li>
-                        <li><a href="">Help Center</a></li>
-                    </ul>
-              </div>
-              <div class="col">
-                    <h6><strong>Contact Us</strong></h6>
-                    <ul>
-                        <li>Adventures of California</li>
-                        <li>3335 Susan St #200</li>
-                        <li>Costa Mesa, CA 92626</li>
-                        <br>
-                        <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
-                        <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
-                        
-                        
-                    </ul>
-              </div>
-    
-            </div>
-          </div>
-  </div>
 </body>
+<!---------------------- FOOTER SECTION  -------------------------->
+    <footer>
+        <div class="container-fluid footer-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h6><strong>About California Adventures</strong></h6>
+                        <ul>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Careers</a></li>
+                            <li><a href="">Press</a></li>
+                        </ul>
+                        <br>
+                        <h6><strong>Explore</strong></h6>
+                        <ul>
+                            <li><a href="">Write a adventure</a></li>
+                            <li><a href="">Sign Up</a></li>
+                            <li><a href="">Help Center</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h6><strong>Contact Us</strong></h6>
+                        <ul>
+                            <li>Adventures of California</li>
+                            <li>3335 Susan St #200</li>
+                            <li>Costa Mesa, CA 92626</li>
+                            <br>
+                            <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
+                            <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
+                        </ul>
+                        <a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"></a> | 
+                        <a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"></a> | 
+                        <a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"></a> | 
+                        <a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"></a>
+                    </div>
+                    <div class="col">
+                        <img src="{% static 'app_1/images/logo1.png' %}" width="250" height="250" alt="logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </html>

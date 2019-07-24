@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Create an Adventure!</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'app_1/css/signup.css' %}">
+    </head>
+
+    <header>
+    <!---------------------- NAVIGATION BAR -------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="/home">
+                <img src="{% static 'app_1/images/logo1.png' %}" width="40" height="40" alt="logo">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto"></ul>
+                    <form class="form-inline ">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                <span class="navbar-text">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="/add_adventure">Add An Adventure </a>
+                                <a class="dropdown-item" href="#">View Past Posts </a> 
+                                <a class="dropdown-item" href="#">View Profile </a> 
+                                <a class="dropdown-item" href="#">Edit Profile </a>  
+                            <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Logout </a> 
+                            </div>
+                        </li>
+                    </ul>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <h1 class="display-4">Add an Adventure!</h1>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Add an Image</label>
+                                    <input name="photo" type="file" class="form-control-file">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Create your Adventure</h5>
+                                    <p class="card-text">
+                                        <form action="/new_adventure" method="post">
+                                            {% csrf_token %}
+                                            <div class="mb-2">
+                                                <input name="title" type="text" class="form-control" placeholder="Title">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="exampleFormControlSelect1">Adventure Type</label>
+                                                <select name="category" class="form-control">
+                                                    <option value="ocean">Ocean</option>
+                                                    <option value="mountain">Mountain</option>
+                                                    <option value="desert">Desert</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <div class="mb-2">
+                                                    <textarea class="form-control" name='description' rows="2" placeholder="Enter description"></textarea>
+                                                </div>
+                                            <div class="mb-2">
+                                                <input name="city" type="text" class="form-control" placeholder="City">
+                                            </div>
+                                            <div class="mb-2">
+                                                <input name="district" type="text" class="form-control" placeholder="Where in your city">
+                                            </div>
+                                            <button type="submit" class="btn btn-sm btn-info">Create New Adventure</button>
+                                            <br>
+                                        </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            </div>
+        </div>
+    </body>
+<!---------------------- FOOTER SECTION  -------------------------->
+    <footer>
+        <div class="container-fluid footer-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h6><strong>About California Adventures</strong></h6>
+                        <ul>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Careers</a></li>
+                            <li><a href="">Press</a></li>
+                        </ul>
+                        <br>
+                        <h6><strong>Explore</strong></h6>
+                        <ul>
+                            <li><a href="/add_adventure">Write an Adventure</a></li>
+                            <li><a href="">Sign Up</a></li>
+                            <li><a href="">Help Center</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h6><strong>Contact Us</strong></h6>
+                        <ul>
+                            <li>Adventures of California</li>
+                            <li>3335 Susan St #200</li>
+                            <li>Costa Mesa, CA 92626</li>
+                            <br>
+                            <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
+                            <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
+                        </ul>
+                        <a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"></a> |
+                        <a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"></a> |
+                        <a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"></a> |
+                        <a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"></a>
+                    </div>
+                    <div class="col">
+                        <img src="{% static 'app_1/images/logo1.png' %}" width="250" height="250" alt="logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</html>

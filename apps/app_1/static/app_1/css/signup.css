@@ -1,3 +1,28 @@
-div.state img{
-    height: 500px;
+div.state{
+    max-height: 450px;
+    margin: 20px;
 }
+div.state img{
+height: 50vh    ;
+}
+/* Style section for the footer */
+.col ul {
+    list-style: none; 
+    text-align: left;
+    padding-inline-start: 0px;
+}
+.col h6 {
+    text-align: left;
+}
+.footer-details {
+    padding: 30px;
+    background-color: #f5f5f5;
+    min-height: 200px;
+}
+ul li a {
+    color: black;
+}
+
+
+
+

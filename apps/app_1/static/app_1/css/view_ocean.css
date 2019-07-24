@@ -22,6 +22,23 @@
 .card-deck .card .card-body {
     text-align: center;
 }
+.mb-3 {
+    margin-left: 30px;
+}
+h1#logo{
+    text-align: center;
+    background: url("{% static 'app_1/images/santa_monica.jpg' %}") no-repeat;
+    background-size: 100%;
+    padding-top: 75px;
+    color:red;
+    font-size: 12vw;
+    letter-spacing: .1em;
+    font-family: 'Anton', sans-serif;
+    font-weight: bolder;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    display: inline;
+}
 /* Style section for the footer */
 .col ul {
     list-style: none; 
@@ -38,21 +55,4 @@
 }
 ul li a {
     color: black;
-}
-.mb-3 {
-    margin-left: 30px;
-}
-h1#logo{
-    text-align: center;
-    background: url("/python_project/apps/app_1/static/app_1/images/santa_monica.jpg") no-repeat;
-    background-size: 100%;
-    padding-top: 75px;
-    color:red;
-    font-size: 12vw;
-    letter-spacing: .1em;
-    font-family: 'Anton', sans-serif;
-    font-weight: bolder;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    display: inline;
 }
