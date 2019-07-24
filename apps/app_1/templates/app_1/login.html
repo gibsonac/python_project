@@ -8,24 +8,35 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'app_1/css/style.css' %}">
-    <style>
-        div.state img {
-            height: 50vh;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'app_1/css/signup.css' %}">
 </head>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <form class="form-inline ">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<!---------------------- NAVIGATION BAR -------------------------->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="/home">
+            <img src="{% static 'app_1/images/logo1.png' %}" width="40" height="40" alt="logo">
+        </a>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto"></ul>
+                <form class="form-inline ">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
             <span class="navbar-text">
-                <h6><a href="/login">Log In </a> | <a href="/signup">Signup </a></h6>
+                <ul class="nav nav-pills">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Add An Adventure </a> 
+                            <a class="dropdown-item" href="#">View Past Posts </a> 
+                            <a class="dropdown-item" href="#">View Profile </a> 
+                            <a class="dropdown-item" href="#">Edit Profile </a>  
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout </a> 
+                        </div>
+                    </li>
+                </ul>
             </span>
         </div>
     </nav>
@@ -54,7 +65,7 @@
                     <button type="submit" class="btn btn-sm btn-success">Login</button>
                 </form>
                 <br>
-                <a href="/register"><p>Don't have an account? Register here.</p></a>
+                <a href="/signup"><p>Don't have an account? Register here.</p></a>
             </div>
             <div class="col-6">
                 <div class="state">
@@ -65,49 +76,45 @@
     </div>
 </body>
 <!---------------------- FOOTER SECTION  -------------------------->
-<div class="container-fluid footer-details">
-    <div class="container">
-            <div class="row">
-              <div class="col">
-                  <h6><strong>About California Adventures</strong></h6>
-                  <ul>
-                      <li><a href="">About Us</a></li>
-                      <li><a href="">Careers</a></li>
-                      <li><a href="">Press</a></li>
-                  </ul>
-                  <br>
-                  <h6><strong>Follow Us</strong></h6>
-                  <ul>
-                      <li><a href=""><img src="{% static 'app_1/images/facebook_20x20.png' %}"> Facebook</a></li>
-                      <li><a href=""><img src="{% static 'app_1/images/twitter_20x20.png' %}"> Twitter</a></li>
-                      <li><a href=""><img src="{% static 'app_1/images/pinterest_20x20.png' %}"> Pinterest</a></li>
-                      <li><a href=""><img src="{% static 'app_1/images/instagram_20x20.png' %}"> Instagram</a></li>
-                  </ul>
-              </div>
-              <div class="col">
-                    <h6><strong>Explore</strong></h6>
-                    <ul>
-                        <li><a href="">Write a adventure</a></li>
-                        <li><a href="">Sign Up</a></li>
-                        <li><a href="">Help Center</a></li>
-                    </ul>
-              </div>
-              <div class="col">
-                    <h6><strong>Contact Us</strong></h6>
-                    <ul>
-                        <li>Adventures of California</li>
-                        <li>3335 Susan St #200</li>
-                        <li>Costa Mesa, CA 92626</li>
+    <footer>
+        <div class="container-fluid footer-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h6><strong>About California Adventures</strong></h6>
+                        <ul>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Careers</a></li>
+                            <li><a href="">Press</a></li>
+                        </ul>
                         <br>
-                        <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
-                        <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
-                        
-                        
-                    </ul>
-              </div>
-    
+                        <h6><strong>Explore</strong></h6>
+                        <ul>
+                            <li><a href="">Write a adventure</a></li>
+                            <li><a href="">Sign Up</a></li>
+                            <li><a href="">Help Center</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h6><strong>Contact Us</strong></h6>
+                        <ul>
+                            <li>Adventures of California</li>
+                            <li>3335 Susan St #200</li>
+                            <li>Costa Mesa, CA 92626</li>
+                            <br>
+                            <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
+                            <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
+                        </ul>
+                        <a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"></a> | 
+                        <a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"></a> | 
+                        <a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"></a> | 
+                        <a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"></a>
+                    </div>
+                    <div class="col">
+                        <img src="{% static 'app_1/images/logo1.png' %}" width="250" height="250" alt="logo">
+                    </div>
+                </div>
             </div>
-          </div>
-  </div>
-
+        </div>
+    </footer>
 </html>

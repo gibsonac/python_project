@@ -20,6 +20,21 @@
     font-size: 6vw;
     color: black;
 }
+h1#logo{
+    text-align: center;
+    background: url("{% static 'app_1/images/cal-desert.jpg' %}") no-repeat;
+    background-size: 100%;
+    padding-top: 110px;
+    color:red;
+    font-size: 12vw;
+    letter-spacing: .1em;
+    font-family: 'Anton', sans-serif;
+    font-weight: bolder;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    display: inline;
+}
+/* Style section for the footer */
 .col ul {
     list-style: none; 
     text-align: left;
@@ -35,18 +50,4 @@
 }
 ul li a {
     color: black;
-}
-h1#logo{
-    text-align: center;
-    background: url('/Users/tony/Documents/CodingDojo/python_stack/django/django_full_stack/python_project/apps/app_1/static/app_1/images/cal-desert.jpg') no-repeat;
-    background-size: 100%;
-    padding-top: 110px;
-    color:red;
-    font-size: 12vw;
-    letter-spacing: .1em;
-    font-family: 'Anton', sans-serif;
-    font-weight: bolder;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    display: inline;
 }

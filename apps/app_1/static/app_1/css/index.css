@@ -19,6 +19,10 @@
     font-size: 4vw;
     color: black;
 }
+h2{
+    font-family: 'Knewave',
+    cursive;
+}
 /* middle card deck's section */
 .card-deck .card .card-body {
     text-align: center;

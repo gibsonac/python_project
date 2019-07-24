@@ -73,7 +73,7 @@
 </head>
 <body>
 <!---------------------- NAVIGATION BAR -------------------------->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <a class="navbar-brand" href="/home">
             <img src="{% static 'app_1/images/logo1.png' %}" width="40" height="40" alt="logo">
         </a>
@@ -100,79 +100,58 @@
             </span>
         </div>
     </nav>
-<!------------------------- ADVENTURE DETAILS ----------------------------->
-    <div class="container">
-    <h2>Title: {{adventure.title}}</h2>
-    <h6>Average Rating: {%if avg_rating == 0%}no reviews!{%else%}{{avg_rating}}{%endif%}</h6>
-    <h6>Date Posted:{{adventure.created_at}}</h6>
-    <p>Description:{{adventure.description}}</p>
-    <div class ="side-scroll col-sm-8">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-    </div>
-    <p>make a for loop going through images and having them display in a carousel or something like that?</p>
-    </div>
-    <!-- writing a review -->
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <form action="/new_message" method="post">
-                    <textarea class="form-control" name='message' rows="2" placeholder="Write a review here!"></textarea>
-                    <div class="mb-2">
-                        <label>Rating</label>
-                        <select name="rating" class="form-control">
-                            <option value="5">5</option>
-                            <option value="4">4</option>
-                            <option value="3">3</option>
-                            <option value="2">2</option>
-                            <option value="1">1</option>
-                        </select>
+<!------------------------- EDIT USER DETAILS ----------------------------->
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h1 class="display-4">Edit your profile!</h1>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+       
+            <div class="container">
+                <form action="/user/{{this_user.id}}/edit" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">First Name: </label>
+                        <div class="col-sm-10">
+                        <input type="text" name="first_name" class="form-control" id="inputEmail3" value="{{this_user.first_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Last Name: </label>
+                        <div class="col-sm-10">
+                        <input type="text" name="last_name" class="form-control" id="inputEmail3" value="{{this_user.last_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email: </label>
+                        <div class="col-sm-10">
+                        <input type="text" name="email" class="form-control" id="inputEmail3" value="{{this_user.email}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" name ='description' id="exampleFormControlTextarea1" rows="3">{{this_user.description}}</textarea>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                        <a href="/home"><button type="button" class="btn btn-info">Cancel</button></a>
+                        <button type="submit" class="btn btn-info">Submit</button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- loop messages here for reviews -->
-    <div class = "container">
-        {%for message in messages%}
-        <div class="row">
-            <div class="col-8">
+</div>
 
-            </div>
-        </div>
-        {%endfor%}
-    </div>
-
-
-<!------------------------- MESSAGES/COMMENTS ----------------------------->
-    {%for message in messages%}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="card">
-                    <div class="card-header">
-                        The message author {{message.creator}}
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                        <p>{{message.message}}</p>
-                        <footer class="blockquote-footer">{{message.created_at}} </footer>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {%endfor%}
-
-</body>
 <!---------------------- FOOTER SECTION  -------------------------->
         <footer>
             <div class="container-fluid footer-details">
