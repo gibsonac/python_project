@@ -6,7 +6,7 @@ import re
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-#hello
+#hello SDFADGS
 # Create your models here.
 class UserManager(models.Manager):
 #REGISTRATION VALIDATOR

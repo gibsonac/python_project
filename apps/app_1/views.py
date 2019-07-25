@@ -165,3 +165,4 @@ def adventure_details (request, my_val):
 def logout(request):
     request.session.clear()
     return redirect('/')
+
