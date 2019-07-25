@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ocean Adventures List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_1/css/style.css' %}">
+    <style>
+           /* top carousel section */
+        .carousel-inner {
+            max-height: 600px !important;
+        }
+        .carousel-content {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            z-index: 20;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,.6);
+        }
+        .carousel-caption {
+            bottom: 50%;
+            background-color: rgba(245,245,245, .4);
+        }
+        .carousel-caption h2 {
+            font-size: 4vw;
+            color: black;
+        }
+        /* middle card deck's section */
+        .card-deck .card .card-body {
+            text-align: center;
+        }
+        /* Style section for the footer */
+        .col ul {
+            list-style: none; 
+            text-align: left;
+            padding-inline-start: 0px;
+        }
+        .col h6 {
+            text-align: left;
+        }
+        .footer-details {
+            padding: 30px;
+            background-color: #f5f5f5;
+            min-height: 200px;
+        }
+        ul li a {
+            color: black;
+        }
+        .mb-3 {
+            margin-left: 30px;
+        }
+        .side-scroll {
+            height: 200px;
+            /* width: 66%; */
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+            /* display: block; */
+        }
+        .side-scroll img {
+            width: 240px;
+            display: inline-block;
+        }
+
+        </style>
+</head>
+<body>
+<!---------------------- NAVIGATION BAR -------------------------->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="/home">
+            <img src="{% static 'app_1/images/logo1.png' %}" width="40" height="40" alt="logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto"></ul>
+                <form class="form-inline ">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            <span class="navbar-text">
+                <ul class="nav nav-pills">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="/add_adventure">Add An Adventure </a>
+                            <a class="dropdown-item" href="#">View Past Posts </a> 
+                            <a class="dropdown-item" href="#">View Profile </a> 
+                            <a class="dropdown-item" href="#">Edit Profile </a>  
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout </a> 
+                        </div>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </nav>
+<!------------------------- EDIT USER DETAILS ----------------------------->
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h1 class="display-4">Admin Dashboard</h1>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+       
+            <div class="container">
+                    <ul class="nav nav-tabs">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">All Posts</a>
+                            </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Last Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Created On</th>
+                                                <th scope="col">Updated On</th>
+                                                <th scope="col">User_level</th>
+                                                <th scope="col">Update</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {%for user in all_users%}
+                                                <tr>
+                                                <th scope="row">{{user.id}}</th>
+                                                <td><a href="/profile_page/{{user.id}}">{{user.first_name}}</a></td>
+                                                <td>{{user.last_name}}</td>
+                                                <td>{{user.email}}</td>
+                                                <td>{{user.description}}</td>
+                                                <td>{{user.created_at|date:'M d, Y'}}</td>
+                                                <td>{{user.updated_at|date:'M d, Y'}}</td>
+                                                <td><form action="/update_level/{{user.id}}" method="POST">{%csrf_token%}<div class="col-auto my-1">
+                                                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                                    <select name = "user_level" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                        <option selected>{{user.user_level}}</option>
+                                                        <option value="1">Basic User</option>
+                                                        <option value="2">Admin</option>
+                                                        <option value="3">Owner</option>
+                                                    </select>
+                                                    </td>
+                                                <td><a href=""><button type="submit" class="btn btn-info btn-sm">UPDATE</button></a></td>
+                                                </form>
+                                                </tr>
+                                                {%endfor%}
+                                            </tbody>
+                                        </table>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">ID</th>
+                                                <a href="#"><th scope="col">Title</th></a>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Located at</th>
+                                                <th scope="col">Category Type</th>
+                                                <th scope="col">Created On</th>
+                                                <th scope="col">Updated On</th>
+                                                <th scope="col">creator ID</th>
+                                                <th scope="col">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {%for adventure in all_adventures%}
+                                                <tr>
+                                                <th scope="row">{{adventure.id}}</th>
+                                                <td><a href="/adventure/details/{{adventure.id}}">{{adventure.title}}</a></td>
+                                                <td>{{adventure.description}}</td>
+                                                <td>{{adventure.located}}</td>
+                                                <td>{{adventure.category}}</td>
+                                                <td>{{adventure.created_at|date:'M d, Y'}}</td>
+                                                <td>{{adventure.updated_at|date:'M d, Y'}}</td>
+                                                <td>{{adventure.creator.id}}</td>
+                                                <td><a href="/delete_adventure/{{adventure.id}}"><button type="button" class="btn btn-info btn-sm">DELETE</button></a></td>
+                                                </tr>
+                                                {%endfor%}
+                                            </tbody>
+                                        </table>
+                            </div>
+
+                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---------------------- FOOTER SECTION  -------------------------->
+        <footer>
+            <div class="container-fluid footer-details">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h6><strong>About California Adventures</strong></h6>
+                            <ul>
+                                <li><a href="">About Us</a></li>
+                                <li><a href="">Careers</a></li>
+                                <li><a href="">Press</a></li>
+                            </ul>
+                            <br>
+                            <h6><strong>Explore</strong></h6>
+                            <ul>
+                                <li><a href="">Write a adventure</a></li>
+                                <li><a href="">Sign Up</a></li>
+                                <li><a href="">Help Center</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h6><strong>Contact Us</strong></h6>
+                            <ul>
+                                <li>Adventures of California</li>
+                                <li>3335 Susan St #200</li>
+                                <li>Costa Mesa, CA 92626</li>
+                                <br>
+                                <li><a href="mailto:adventures@gmail.com"><img src="{% static 'app_1/images/email.png' %}"> Email</a></li>
+                                <li><a href=""><img src="{% static 'app_1/images/phone.png' %}"> 999-999-9999</a></li>
+                            </ul>
+                            <a href="https://www.facebook.com/"><img src="{% static 'app_1/images/facebook_20x20.png' %}"></a> | 
+                            <a href="https://twitter.com/"><img src="{% static 'app_1/images/twitter_20x20.png' %}"></a> | 
+                            <a href="https://www.pinterest.com/"><img src="{% static 'app_1/images/pinterest_20x20.png' %}"></a> | 
+                            <a href="https://www.instagram.com/"><img src="{% static 'app_1/images/instagram_20x20.png' %}"></a>
+                        </div>
+                        <div class="col">
+                            <img src="{% static 'app_1/images/logo1.png' %}" width="250" height="250" alt="logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</html>

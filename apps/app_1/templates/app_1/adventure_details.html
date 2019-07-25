@@ -57,15 +57,13 @@
             margin-left: 30px;
         }
         .side-scroll {
-            height: 200px;
-            /* width: 66%; */
+            height: 300px;
             overflow-x: scroll;
             overflow-y: hidden;
             white-space: nowrap;
-            /* display: block; */
         }
         .side-scroll img {
-            width: 240px;
+            width: 360px;
             display: inline-block;
         }
 
@@ -102,76 +100,66 @@
     </nav>
 <!------------------------- ADVENTURE DETAILS ----------------------------->
     <div class="container">
-    <h2>Title: {{adventure.title}}</h2>
-    <h6>Average Rating: {%if avg_rating == 0%}no reviews!{%else%}{{avg_rating}}{%endif%}</h6>
-    <h6>Date Posted:{{adventure.created_at}}</h6>
-    <p>Description:{{adventure.description}}</p>
-    <div class ="side-scroll col-sm-8">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-        <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
-    </div>
-    <p>make a for loop going through images and having them display in a carousel or something like that?</p>
-    </div>
-    <!-- writing a review -->
-    <div class="container">
+            <h2>Title: {{adventure.title}}</h2>
+            <h6>Average Rating: {%if avg_rating == 0%}no reviews!{%else%}{{avg_rating}}{%endif%}</h6>
+            <h6>Date Posted:{{adventure.created_at|date:'M d, Y'}}</h6>
+            <p>Description:{{adventure.description}}</p>
+            <div class ="side-scroll col-sm-12">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+                <img src="{% static 'app_1/images/surfer.jpg' %}" alt="..." class="img-thumbnail">
+            </div>
+        </div>
+        <!-- writing a review -->
+        <div class="container">
         <div class="row">
             <div class="col-8">
-                <form action="/new_message" method="post">
-                    <textarea class="form-control" name='message' rows="2" placeholder="Write a review here!"></textarea>
-                    <div class="mb-2">
-                        <label>Rating</label>
-                        <select name="rating" class="form-control">
-                            <option value="5">5</option>
-                            <option value="4">4</option>
-                            <option value="3">3</option>
-                            <option value="2">2</option>
-                            <option value="1">1</option>
-                        </select>
-                    </div>
-                </form>
+                
             </div>
         </div>
     </div>
     <!-- loop messages here for reviews -->
     <div class = "container">
-        {%for message in messages%}
-        <div class="row">
-            <div class="col-8">
-
+        <div class="card w-75">
+            <div class="card-body">
+                    <form action="/new/message/{{adventure.id}}" method="post">
+                        {%csrf_token%}
+                        <textarea class="form-control" name='message' rows="2" placeholder="Write a review here!"></textarea>
+                        <div class="mb-2">
+                            <label>Rating</label>
+                            <select name="rating" class="form-control">
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-info">Submit Review</button>
+                    </form>
             </div>
         </div>
+        <p></p>
+        {%for message in all_messages%}
+        <div class="card w-50">
+            <div class="card-body">
+                <p>{{message.id}}</p>
+                <p class="card-title"><strong>Written By:</strong> {{message.creator.first_name.capitalize}}</p>
+                <p class="card-text"><strong>Rating:</strong> {{message.rating}}</p>
+                <p class="card-text">{{message.message}}</p>
+                <p class="card-text"><strong>Posted On:</strong> {{message.created_at|date:'M d, Y'}}</p>
+                {%if message.creator.id == request.session.user%}<a href="/delete_message/{{message.id}}"><button class="btn btn-info">Delete Review</button></a>{%endif%}
+            </div>
+        </div>
+        <p></p>
         {%endfor%}
     </div>
-
-
-<!------------------------- MESSAGES/COMMENTS ----------------------------->
-    {%for message in messages%}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="card">
-                    <div class="card-header">
-                        The message author {{message.creator}}
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                        <p>{{message.message}}</p>
-                        <footer class="blockquote-footer">{{message.created_at}} </footer>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {%endfor%}
-
 </body>
 <!---------------------- FOOTER SECTION  -------------------------->
         <footer>

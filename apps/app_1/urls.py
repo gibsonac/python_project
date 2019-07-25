@@ -18,4 +18,10 @@ urlpatterns = [
     url(r'^add_adventure$', views.add_adventure),
     url(r'^new_adventure$', views.new_adventure),
     url(r'^adventure/details/(?P<my_val>\d+)$', views.adventure_details),
+    url(r'^new/message/(?P<my_val>\d+)$', views.new_message),
+    url(r'^delete_message/(?P<my_val>\d+)$', views.delete_message),
+    url(r'^delete_adventure/(?P<my_val>\d+)$', views.delete_adventure),
+    url(r'^dashboard/(?P<my_val>\d+)$', views.dashboard),
+    url(r'^profile/(?P<my_val>\d+)$', views.profile),
+    url(r'^update_level/(?P<my_val>\d+)$', views.user_level),
 ]

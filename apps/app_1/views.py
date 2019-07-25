@@ -5,7 +5,6 @@ import bcrypt
 import re
 
 
-
 #HOME PAGE
 #IF USER SESSION, THEY CAN USE SITE FULLY
 def index(request):
@@ -63,6 +62,35 @@ def home(request):
         return redirect('/login_page')
     else:
         return render(request, 'app_1/home.html', {'user': User.objects.get(id=request.session['user'])})
+
+#USER PROFILE
+def profile(request, my_val):
+    current_user = User.objects.get(id=my_val)
+    context = {
+        'user': current_user,
+        'adventures': Adventure.objects.get(id = my_val),
+    }
+    return render('app_1/profile_page.html', context)
+
+#DASHBOARD ONCE LOGGED IN
+def dashboard(request, my_val):
+    current_user = User.objects.get(id=my_val)
+    all_users = User.objects.all()
+    context = {
+        "current_user": current_user,
+        "all_users": User.objects.all(),  
+        "all_adventures": Adventure.objects.all()      
+    }
+    return render(request, 'app_1/dashboard.html', context)
+
+#UPDATING A USER LEVEL
+def user_level(request, my_val):
+    current_user = User.objects.get(id = request.session['user'])
+    changing_user = User.objects.get(id=my_val)
+    changing_user.user_level = request.POST['user_level']
+    changing_user.save()
+    print(changing_user)
+    return redirect (f'/dashboard/{current_user.id}')
 
 #EDITING YOUR USER PROFILE
 def user_edit (request):
@@ -139,27 +167,54 @@ def new_adventure(request):
         added_location = Location.objects.last()
         Adventure.objects.create(
             title=request.POST['title'], description = request.POST['description'], located=added_location, creator = creator, category=request.POST['category'])
-        new_adventure = Adventure.objects.last()
-        Message.objects.create(creator = creator, adventure_posted = new_adventure, rating = int(request.POST['rating']))
         return redirect('/home')
 
 #ADVENTURE DETAILS
 def adventure_details (request, my_val):
     adventure = Adventure.objects.get(id = my_val)
-    all_ratings = adventure.adventure_ratings.all()
+    all_messages = adventure.adventure_messages.all()
     avg_rating = 0
-    if len(all_ratings) == 0:
+    if len(all_messages) == 0:
         pass
     else:
         total = 0
-        for rating in all_ratings:
-            total = total + rating
-        avg_rating = total/len(all_ratings)
+        for message in all_messages:
+            total += int(message.rating)
+        avg_rating = total/len(all_messages)
+        avg_ratings = round(avg_rating, 1)
     context = {
         "adventure": Adventure.objects.get(id = my_val),
-        "avg_rating": avg_rating,
+        "avg_rating": avg_ratings,
+        "all_messages": all_messages
     }
     return render(request, 'app_1/adventure_details.html', context)
+
+#new message being added!
+def new_message(request, my_val):
+    errors = Message.objects.message_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/adventure/details/{my_val}')
+    else:
+        creator = User.objects.get(id=request.session['user'])
+        adventure = Adventure.objects.get(id = my_val)
+        Message.objects.create(message=request.POST['message'], creator=creator, adventure_posted=adventure, rating=request.POST['rating'])
+        return redirect(f'/adventure/details/{my_val}')
+
+#DELETE MESSAGE
+def delete_message(request, my_val):
+    message_to_delete = Message.objects.get(id=my_val)
+    adventure = str(message_to_delete.adventure_posted.id)
+    message_to_delete.delete()
+    return redirect('/adventure/details/'+adventure)
+
+#DELETE ADVENTURE POST
+def delete_adventure(request, my_val):
+    adventure_to_delete = Adventure.objects.get(id=my_val)
+    current_user = User.objects.get(id=request.session['user'])
+    adventure_to_delete.delete()
+    return redirect(f'/dashboard/{current_user.id}')
 
 #LOGOUT
 def logout(request):

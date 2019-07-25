@@ -6,7 +6,7 @@ import re
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-#hello SDFADGS
+
 # Create your models here.
 class UserManager(models.Manager):
 #REGISTRATION VALIDATOR
@@ -119,7 +119,7 @@ class Message(models.Model):
 	message = models.TextField(blank=True, null=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	rating = models.PositiveIntegerField()
 	creator = models.ForeignKey(User, related_name="message_created")
 	adventure_posted = models.ForeignKey(Adventure, related_name="adventure_messages")
-	rating = models.ForeignKey(Adventure, related_name="adventure_ratings")
 	objects = MessageManager()
